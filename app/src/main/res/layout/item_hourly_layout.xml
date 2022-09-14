@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <import type="com.example.coolweather.entity.HourlyEntity"/>
+        <variable
+            name="hourly"
+            type="HourlyEntity" />
+        <variable
+            name="loadByCode"
+            type="java.lang.Integer" />
+        <variable
+            name="windIcon"
+            type="java.lang.String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_hourly_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_14dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/item_hourly_icon_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_hourly_time_tv"
+            bind:loadByCode="@{hourly.icon}" />
+
+        <ImageView
+            android:id="@+id/item_hourly_rain_img"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="2dp"
+            android:src="@drawable/icon_rain"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/item_hourly_rain_tv"
+            app:layout_constraintTop_toBottomOf="@id/item_hourly_icon_img" />
+
+        <TextView
+            android:id="@+id/item_hourly_rain_tv"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text='@{hourly.pop+@string/percent}'
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/item_hourly_rain_img"
+            app:layout_constraintLeft_toRightOf="@id/item_hourly_rain_img"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_hourly_rain_img" />
+
+        <com.example.coolweather.view.TempView
+            android:id="@+id/item_hourly_temp_view"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_hourly_rain_img" />
+
+        <TextView
+            android:id="@+id/item_hourly_wind_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/wind"
+            android:textColor="@color/color_locate_text1"
+            android:textSize="@dimen/text_14dp"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_hourly_temp_view" />
+
+        <TextView
+            android:id="@+id/item_hourly_wind_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text='@{hourly.windScale+@string/level}'
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_hourly_wind_tv" />
+
+        <ImageView
+            android:id="@+id/item_hourly_wind_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_hourly_wind_content_tv"
+            bind:windIcon="@{hourly.windDir}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
